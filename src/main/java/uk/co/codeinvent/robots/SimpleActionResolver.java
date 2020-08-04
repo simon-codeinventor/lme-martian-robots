@@ -21,22 +21,24 @@ class SimpleActionResolver implements ActionResolver {
     }
 
     private Action forwardMoveAction(Position position) {
-        switch (position.getOrientation()) {
+        final Position.Orientation orientation = position.getOrientation();
+        switch (orientation) {
             case N:
-                return new MoveAction(0, 1, position.getOrientation());
+                return new MoveAction(0, 1, orientation);
             case E:
-                return new MoveAction(1, 0, position.getOrientation());
+                return new MoveAction(1, 0, orientation);
             case S:
-                return new MoveAction(0, -1, position.getOrientation());
+                return new MoveAction(0, -1, orientation);
             case W:
-                return new MoveAction(-1, 0, position.getOrientation());
+                return new MoveAction(-1, 0, orientation);
             default:
-                throw new IllegalStateException("unknown orientation " + position.getOrientation());
+                throw new IllegalStateException("unknown orientation " + orientation);
         }
     }
 
     private Action leftMoveAction(Position position) {
-        switch (position.getOrientation()) {
+        final Position.Orientation orientation = position.getOrientation();
+        switch (orientation) {
             case N:
                 return new MoveAction(0, 0, Position.Orientation.W);
             case E:
@@ -46,12 +48,13 @@ class SimpleActionResolver implements ActionResolver {
             case W:
                 return new MoveAction(0, 0, Position.Orientation.S);
             default:
-                throw new IllegalStateException("unknown orientation " + position.getOrientation());
+                throw new IllegalStateException("unknown orientation " + orientation);
         }
     }
 
     private Action rightMoveAction(Position position) {
-        switch (position.getOrientation()) {
+        final Position.Orientation orientation = position.getOrientation();
+        switch (orientation) {
             case N:
                 return new MoveAction(0, 0, Position.Orientation.E);
             case E:
@@ -61,7 +64,7 @@ class SimpleActionResolver implements ActionResolver {
             case W:
                 return new MoveAction(0, 0, Position.Orientation.N);
             default:
-                throw new IllegalStateException("unknown orientation " + position.getOrientation());
+                throw new IllegalStateException("unknown orientation " + orientation);
         }
     }
 }
