@@ -18,7 +18,7 @@ public interface Robot {
         Status currentStatus = getStatus();
         for (Instruction instruction : instructions) {
             if (OK != currentStatus) break;
-            currentStatus = follow(instruction);
+            currentStatus = instruction.execute(this);
         }
         return currentStatus;
     }

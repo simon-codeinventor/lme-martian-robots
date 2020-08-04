@@ -1,8 +1,13 @@
 package uk.co.codeinvent.robots;
 
+import static java.util.Objects.requireNonNull;
+
 public interface Instruction {
 
     String getCode();
 
-    Robot.Status execute(Robot robot);
+    default Robot.Status execute(Robot robot) {
+        return requireNonNull(robot, "robot expected")
+                .follow(this);
+    }
 }

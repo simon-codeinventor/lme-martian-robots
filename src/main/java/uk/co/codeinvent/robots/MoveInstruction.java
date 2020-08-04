@@ -14,10 +14,4 @@ class MoveInstruction implements Instruction {
     public String getCode() {
         return code;
     }
-
-    @Override
-    public Robot.Status execute(Robot robot) {
-        return requireNonNull(robot, "robot expected")
-                .follow(this);
-    }
 }
