@@ -18,7 +18,10 @@ class PositionParser implements Parser<Position> {
         String[] coOrds = Optional.ofNullable(line)
                 .map(String::trim)
                 .map(s -> s.split("\\s+"))
-                .orElseThrow(() -> new IllegalArgumentException("unknown co-ordinates " + line));
+                .orElse(new String[]{});
+        if (coOrds.length != 3) {
+            throw new IllegalArgumentException("unknown co-ordinates " + line);
+        }
         Position position = new SimplePosition(
                 Integer.parseInt(coOrds[0]),
                 Integer.parseInt(coOrds[1]),
