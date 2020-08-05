@@ -20,10 +20,7 @@ class GridParser implements Parser<Grid> {
         String[] coOrds = Optional.ofNullable(line)
                 .map(String::trim)
                 .map(s -> s.split("\\s+"))
-                .orElse(new String[]{});
-        if (coOrds.length != 2) {
-            throw new IllegalArgumentException("unknown grid co-ordinates " + line);
-        }
+                .orElseThrow(() -> new IllegalArgumentException("unknown grid co-ordinates " + line));
         Grid grid = new RectangularGrid(
                 min(Integer.parseInt(coOrds[0]), maxCoOrd),
                 min(Integer.parseInt(coOrds[1]), maxCoOrd)
